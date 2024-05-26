@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Grades</title>
+</head>
+<body>
+<h1>学生界面</h1>
+<div th:with="student=${stuGrades[0]}"> <!-- 取第一个学生成绩 -->
+    <p>Student ID: <span th:text="${student.stuid}"></span></p> <!-- 显示学生学号 -->
+    <p>Name: <span th:text="${student.name}"></span></p> <!-- 显示学生姓名 -->
+</div>
+<table>
+    <tr>
+        <th>Course Name</th>
+        <th>Grade</th>
+    </tr>
+    <tr th:each="grade : ${stuGrades}">
+        <td th:text="${grade.coursename}"></td>
+        <td th:text="${grade.grade}"></td>
+    </tr>
+</table>
+<form method="post" action="/logout">
+    <input type="hidden" name="stuid" th:value="${stuGrades[0].stuid}" /> <!-- 传递当前账号名 -->
+    <input type="hidden" name="role" th:value="0" /> <!-- 传递当前身份-->
+    <button type="submit">Logout</button>
+</form>
+</body>
+</html>

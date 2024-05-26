@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Grades</title>
+</head>
+<body>
+<h1>教务界面</h1>
+<!--<div th:with="student=${stuGrades[0]}"> &lt;!&ndash; 取第一个学生成绩 &ndash;&gt;-->
+<!--    <p>Student ID: <span th:text="${student.stuid}"></span></p> &lt;!&ndash; 显示学生学号 &ndash;&gt;-->
+<!--    <p>Name: <span th:text="${student.name}"></span></p> &lt;!&ndash; 显示学生姓名 &ndash;&gt;-->
+<!--</div>-->
+<h2>课程列表</h2>
+<form method="post" action="/addCourse">
+    <input type="text" name="courseName" id="courseName" placeholder="输入要添加的课程名">
+    <button type="submit">添加课程</button>
+</form>
+<form method="post" action="/deleteCourse">
+    <table>
+        <tr>
+            <th>课程ID</th>
+            <th>课程名</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="course, iterStat : ${courseList}">
+            <td th:text="${iterStat.count}"></td>
+            <td th:text="${course}"></td>
+            <td>
+                <button type="submit" name="courseName" th:value="${course}">删除</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<h2>教学班列表</h2>
+<form method="post" action="/addTC">
+    <input type="text" name="classId" id="TCClassId" placeholder="输入教学班ID">
+    <input type="text" name="courseName" id="TCCourseName" placeholder="输入课程名称">
+    <button type="submit">添加教学班</button>
+</form>
+<form method="post" action="/deleteTC">
+    <table>
+        <tr>
+            <th>教学班编号</th>
+            <th>教学班课程</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="tc: ${TCList}">
+            <td th:text="${tc.key}"></td>
+            <td th:text="${tc.value}"></td>
+            <td>
+                <button type="submit" name="classId" th:value="${tc.key}">删除</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<h2>分数段分布</h2>
+<form method="post" action="/getGradeArea">
+    <button type="submit">获取分数段分布</button>
+</form>
+<table>
+    <tr>
+        <th>课程</th>
+        <th>优</th>
+        <th>良</th>
+        <th>合格</th>
+        <th>不合格</th>
+    </tr>
+    <tr th:each="gradeArea: ${gradeAreaList}">
+        <td th:text="${gradeArea.coursename}"></td>
+        <td th:text="${gradeArea.rateA}"></td>
+        <td th:text="${gradeArea.rateB}"></td>
+        <td th:text="${gradeArea.rateC}"></td>
+        <td th:text="${gradeArea.rateD}"></td>
+    </tr>
+</table>
+<h2>排名查询</h2>
+<form method="post" action="/getGradeRanking">
+    <input type="text" name="coursename" id="searchCourse" placeholder="输入科目名">
+    <select name="type" id="classSelector">
+        <option value="id">学号</option>
+        <option value="total">总成绩</option>
+        <option value="course">科目成绩</option>
+    </select>
+    <button type="submit">获取排名</button>
+</form>
+<h3>排名结果为：</h3>
+<table>
+    <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>成绩</th>
+    </tr>
+    <tr th:each="gradeList: ${allGradeList}">
+        <td th:text="${gradeList.stuid}"></td>
+        <td th:text="${gradeList.name}"></td>
+        <td th:text="${gradeList.grade}"></td>
+    </tr>
+</table>
+<form method="post" action="/logout">
+    <input type="hidden" name="stuid" th:value="${username}" /> <!-- 传递当前账号名 -->
+    <input type="hidden" name="role" th:value="0" /> <!-- 传递当前身份-->
+    <button type="submit">Logout</button>
+</form>
+</body>
+</html>

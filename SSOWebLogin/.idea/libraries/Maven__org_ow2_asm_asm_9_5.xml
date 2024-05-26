@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.ow2.asm:asm:9.5">
+    <CLASSES>
+      <root url="jar://D:/apache-maven-3.6.0/.m2/repository/org/ow2/asm/asm/9.5/asm-9.5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/apache-maven-3.6.0/.m2/repository/org/ow2/asm/asm/9.5/asm-9.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/apache-maven-3.6.0/.m2/repository/org/ow2/asm/asm/9.5/asm-9.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

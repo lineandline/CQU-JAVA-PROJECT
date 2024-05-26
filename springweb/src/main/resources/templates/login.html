@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .radio-group label {
+            margin-right: 10px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center; /* 将按钮水平居中 */
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 90%;
+        }
+        button.login {
+            background-color: #3a91f6;
+            color: #fff;
+        }
+        button.register {
+            background-color: #3a91f6;
+            color: #fff;
+        }
+        .register-link {
+            display: block;
+            text-align: center; /* 文本居中 */
+            margin-top: 10px; /* 调整到按钮的间距 */
+        }
+    </style>
+</head>
+<body>
+<form action="/index" method="post">
+    <h2>Login Form</h2>
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div class="form-group">
+        <label for="role">身份:</label>
+        <select id="role" name="role">
+            <option value="student">学生</option>
+            <option value="teacher">教师</option>
+            <option value="admin">管理员</option>
+        </select>
+    </div>
+    <div class="button-group">
+        <button class="login" type="submit">登录</button>
+    </div>
+    <a href="/register" class="register-link">没有帐户？注册</a>
+</form>
+</body>
+</html>

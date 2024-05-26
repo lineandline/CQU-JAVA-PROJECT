@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册界面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 90%;
+        }
+        button.register {
+            background-color: #3a91f6;
+            color: #fff;
+        }
+        .login-link {
+            display: block;
+            text-align: center; /* 文本居中 */
+            margin-top: 10px; /* 调整到按钮的间距 */
+        }
+    </style>
+</head>
+<body>
+<form action="/addUser" method="post" onsubmit="return registerSuccess()">
+    <h2>Register Form</h2>
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div class="form-group">
+        <label for="role">身份:</label>
+        <select id="role" name="role">
+            <option value="student">学生</option>
+            <option value="teacher">教师</option>
+            <option value="admin">管理员</option>
+        </select>
+    </div>
+    <div class="button-group">
+        <button class="register" type="submit">注册</button>
+    </div>
+    <a href="/login" class="login-link">已有帐户？登录</a>
+    <script>
+        function registerSuccess() {
+            alert("注册成功！返回登录界面...");
+            return true;
+        }
+    </script>
+</form>
+</body>
+</html>

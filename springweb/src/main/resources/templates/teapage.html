@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Page</title>
+</head>
+<body>
+<h2>Teacher Page</h2>
+<table>
+  <tr>
+    <th>课程名</th>
+    <th>课程教学班id</th>
+  </tr>
+  <tr th:each="teachclass : ${teacherClasses}">
+    <td th:text="${teachclass.get('coursename')}"></td>
+    <td th:text="${teachclass.get('id')}"></td>
+  </tr>
+</table>
+<form method="post" action="/getClassMember">
+  <input type="text" name="classId" id="classId" placeholder="输入教学班号">
+  <select name="classType" id="classSelector">
+    <option value="stuid">学号</option>
+    <option value="grade">成绩</option>
+  </select>
+  <button type="submit">搜索教学班成员</button>
+</form>
+<h2>教学班成员</h2>
+<table>
+  <tr>
+    <th>学生ID</th>
+    <th>学生姓名</th>
+    <th>课程分数</th>
+    <th>平时   期中   实验   期末</th>
+<!--    <th>期中成绩</th>-->
+<!--    <th>实验成绩</th>-->
+<!--    <th>期末成绩</th>-->
+    <th>操作</th>
+  </tr>
+    <tr th:each="studentGrade : ${studentGrades}">
+      <form method="post" action="/updateStudentGrade">
+        <td th:text="${studentGrade.stuid}"></td>
+        <td th:text="${studentGrade.name}"></td>
+        <td th:text="${studentGrade.grade}"></td>
+        <td>
+            <input type="hidden" name="studentId" th:value="${studentGrade.stuid}">
+            <input type="hidden" name="teachclass" th:value="${studentGrade.teachclass}">
+            <input type="text" name="newGrade1" id="newGrade1" placeholder="录入新成绩" style="width: 30px;">
+            <input type="text" name="newGrade2" id="newGrade2" placeholder="录入新成绩" style="width: 30px;">
+            <input type="text" name="newGrade3" id="newGrade3" placeholder="录入新成绩" style="width: 30px;">
+            <input type="text" name="newGrade4" id="newGrade4" placeholder="录入新成绩" style="width: 30px;">
+        </td>
+        <td>
+            <button type="submit">提交成绩</button>
+        </td>
+      </form>
+    </tr>
+</table>
+<form method="post" action="/logout">
+  <input type="hidden" name="stuid" th:value="${username}" /> <!-- 传递当前账号名 -->
+  <input type="hidden" name="role" th:value="0" /> <!-- 传递当前身份-->
+  <button type="submit">Logout</button>
+</form>
+
+
+<!-- 模态框 -->
+<!--<div id="myModal" class="modal">-->
+<!--  <div class="modal-content">-->
+<!--    <span class="close" onclick="closeModal('myModal')">&times;</span>-->
+<!--    <form method="post" action="/updateGrade">-->
+<!--      <input type="hidden" name="studentId" id="studentId">-->
+<!--      <input type="number" name="newGrade" id="newGrade" placeholder="输入新的成绩">-->
+<!--      <button type="submit">确认更改</button>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--  function openModal(modalId) {-->
+<!--    document.getElementById(modalId).style.display = "block";-->
+<!--    document.getElementById('classId').value = classId;-->
+<!--  }-->
+
+<!--  function closeModal(modalId) {-->
+<!--    document.getElementById(modalId).style.display = "none";-->
+<!--  }-->
+
+<!--  // 给每个按钮绑定对应的学生ID-->
+<!--  var buttons = document.querySelectorAll('button');-->
+<!--  buttons.forEach(function(button) {-->
+<!--    button.addEventListener('click', function() {-->
+<!--      var studentId = this.parentElement.parentElement.querySelector('td:nth-child(0)').textContent;-->
+<!--      document.getElementById('studentId').value = studentId;-->
+<!--      var classId = this.parentElement.parentElement.querySelector('td:nth-child(3)').textContent;-->
+<!--      document.getElementById('classId').value = classId;-->
+<!--    });-->
+<!--  });-->
+<!--</script>-->
+</body>
+</html>
